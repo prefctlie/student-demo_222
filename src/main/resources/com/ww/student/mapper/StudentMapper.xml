@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ww.student.mapper.StudentMapper">
+
+    <insert id="saveStudent" parameterType="com.ww.student.domain.Student">
+        insert into student(student_id, name, age, gender, create_time, update_time, clazz)
+        values (#{studentId}, #{name}, #{age}, #{gender}, #{createTime}, #{updateTime}, #{clazz})
+    </insert>
+
+    <select id="selectLike" resultType="com.ww.student.domain.Student">
+        select *
+        from student s
+        where 1 = 1
+        <if test="condition!=null and condition.length > 0">
+            and (student_id like CONCAT('%',#{condition},'%') or name like CONCAT('%',#{condition},'%'))
+        </if>
+        limit #{currentPage}, #{pageSize}
+    </select>
+
+    <update id="updateStudent" parameterType="com.ww.student.domain.Student">
+        update student
+        set name        = #{name},
+            age         = #{age},
+            gender      = #{gender},
+            update_time = #{updateTime},
+            create_time = #{createTime},
+            clazz       = #{clazz}
+        where student_id = #{studentId}
+    </update>
+
+    <delete id="deleteById" parameterType="string">
+        delete
+        from student
+        where student_id = #{studentId}
+    </delete>
+
+    <select id="findById" parameterType="string" resultType="com.ww.student.domain.Student">
+        select *
+        from student
+        where student_id = #{studentId}
+    </select>
+</mapper>

@@ -1,0 +1,19 @@
+server:
+  port: 801
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.88.239:3306/aaa_test?characterEncoding=utf-8&useSSL=false
+    username: gumigpsuser
+    password: 111111
+  redis:
+    host: 192.168.88.232
+    port: 6381
+    database: 0
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.zhg.demo.mybatis.entity
+  configuration:
+    map-underscore-to-camel-case: true
