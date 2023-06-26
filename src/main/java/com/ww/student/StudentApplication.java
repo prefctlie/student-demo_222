@@ -15,5 +15,6 @@ import org.springframework.context.annotation.Import;
 public class StudentApplication {
     public static void main(String[] args) {
         SpringApplication.run(StudentApplication.class, args);
+        System.out.println("StudentApplication 启动成功");
     }
 }
